@@ -1,0 +1,6 @@
+coffee.admin:
+  title: 'Coffee settings'
+  description: 'A basic module'
+  parent: system.admin_config_development
+  route_name: coffee.content
+  weight: 100

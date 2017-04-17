@@ -1,0 +1,8 @@
+coffee.form:
+  path: '/coffee/signup'
+  defaults:
+    _title: 'Birthday Coffee Signup Form'
+    _form: '\Drupal\coffee\Form\CoffeeForm'
+    # Lets Drupal know that this is a form-based controller.
+  requirements:
+    _permission: 'access content'
