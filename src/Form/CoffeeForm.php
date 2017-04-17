@@ -45,8 +45,10 @@ class CoffeeForm extends FormBase {
       '#required' => TRUE,
     );
 
+		// Set the max date to today. Coffee is only for people already born. A bot could put in a random date.
     $form['dob'] = array (
       '#type' => 'date',
+      '#max' => date('Y-m-d'),
       '#title' => t('Birthday:'),
       '#required' => TRUE,
     );
