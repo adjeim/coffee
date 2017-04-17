@@ -1,5 +1,5 @@
 coffee.form:
-  path: '/coffee/signup'
+  path: '/coffee'
   defaults:
     _title: 'Birthday Coffee Signup Form'
     _form: '\Drupal\coffee\Form\CoffeeForm'

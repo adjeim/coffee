@@ -73,7 +73,7 @@ class CoffeeForm extends FormBase {
 		}
 
 		// A valid email address contains only one @ symbol, at least one period, and has more than 5 characters. example: t@t.t
-		
+
 		// if (substr_count($form_state->getValue('email'), '@') > 1 || substr_count($form_state->getValue('email'), '.') === 0) || strlen($form_state->getValue('email') < 5) {
 		if (substr_count($form_state->getValue('email'), '@') > 1) {
 				$form_state->setErrorByName('email', $this->t('Please enter a valid email address.'));
@@ -85,7 +85,7 @@ class CoffeeForm extends FormBase {
   */
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-		drupal_set_message($this-> t("Thank you, <b>@name</b>! We'll send you a coupon for free coffee to <b>@email</b> on <b>@dob</b>", array(
+		drupal_set_message($this-> t("Thank you, <b>@name</b>! We'll send you a coupon for free coffee to <b>@email</b> on <b>@dob</b>.", array(
 			'@name' => $form_state->getValue('name'),
 			'@email' => $form_state->getValue('email'),
 			'@dob' => $form_state->getValue('dob'),
