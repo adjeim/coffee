@@ -88,11 +88,60 @@ class CoffeeForm extends FormBase {
   */
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
+		// drupal_set_message($this-> t("Thank you, <b>@name</b>! We'll send you a coupon for free coffee to <b>@email</b> next <b>@dob</b>.", array(
+		// 	'@name' => $form_state->getValue('name'),
+		// 	'@email' => $form_state->getValue('email'),
+		// 	'@dob' => date("M d", strtotime($form_state->getValue('dob'))),
+		// 	)));
+
+		// The below is deprecated(?) and doesn't work, but was worth a try.
+		// https://www.drupal.org/node/431666
+		/*
+
+		$name = $form_state->getValue('name');
+	  $email = $form_state->getValue('email');
+	  $dob = $form_state->getValue('dob');
+		$created = time();
+
+		$sql_query = "INSERT INTO coffee_data ('name','email','dob','created') VALUES ('%s', '%s', '%s', %d)";
+
+
+		if ($success = db_query($sql_query, $name, $email, $dob, $created)) {
+    		drupal_set_message($this-> t("Thank you, <b>@name</b>! We'll send you a coupon for free coffee to <b>@email</b> next <b>@dob</b>.", array(
+						'@name' => $form_state->getValue('name'),
+						'@email' => $form_state->getValue('email'),
+						'@dob' => date("M d", strtotime($form_state->getValue('dob'))),
+				)));
+	  } else { 
+	    drupal_set_message($this-> t('There was an error saving your data. Please try again.'));
+	  }
+	  */
+
+	  // Also doesn't work:
+	  // https://www.drupal.org/docs/7/api/database-api/insert-queries
+	  // But there isn't one for Drupal 8?
+	  // https://www.drupal.org/docs/8/api/database-api
+	  
+		$name = $form_state->getValue('name');
+	  $email = $form_state->getValue('email');
+	  $dob = $form_state->getValue('dob');
+		$created = time();
+
+
+		$nid = db_insert('coffee_data') 
+		->fields(array(  
+			'name' => $name,  
+			'email' => $email,  
+			'dob' => $dob,
+			'created' => $created,
+		))
+		->execute();
+
 		drupal_set_message($this-> t("Thank you, <b>@name</b>! We'll send you a coupon for free coffee to <b>@email</b> next <b>@dob</b>.", array(
 			'@name' => $form_state->getValue('name'),
 			'@email' => $form_state->getValue('email'),
 			'@dob' => date("M d", strtotime($form_state->getValue('dob'))),
-			)));
+		)));
 
   }
 
